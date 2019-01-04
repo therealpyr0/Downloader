@@ -107,6 +107,15 @@ class Downloader():
         chunkslist=self.dividefileparts(self.filesize)
         print self.threadpooler(chunkslist)
         self.mergefiles()
+        self.cleanuptempfolder()
+
+    def cleanuptempfolder():
+        try:
+            folderpath=self.tempfilelocation
+            shutil.rmtree(folderpath,ignore_errors=True)
+            return 0
+        except:
+            return -1
 
 
 if __name__ == "__main__":
